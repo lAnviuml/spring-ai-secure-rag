@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: spring-ai-secure-rag
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+
+server:
+  shutdown: graceful
+  error:
+    include-message: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+secure-rag:
+  retrieval:
+    top-k: 4
+    similarity-threshold: 0.18
+    max-content-length: 20000
+
+logging:
+  pattern:
+    level: "%5p [requestId:%X{requestId:-}]"
